@@ -1,0 +1,8 @@
+[Version] 2.0
+[Number of Ports] 2
+[Number of Frequencies] 1
+[Matrix Format] Upper
+# MHz S MA R 50
+[Network Data]
+100  1 0  0.5 -90  0.25 180
+[End]

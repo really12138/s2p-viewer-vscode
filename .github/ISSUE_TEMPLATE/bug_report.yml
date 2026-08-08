@@ -1,0 +1,78 @@
+name: Bug report
+description: Report a reproducible S2P Viewer problem using non-confidential data.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not upload proprietary measurement or PDK data. Reduce the problem to a synthetic file whenever possible. Report security issues privately through SECURITY.md.
+
+  - type: input
+    id: vscode-version
+    attributes:
+      label: VS Code version
+      placeholder: "1.123.0"
+    validations:
+      required: true
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: S2P Viewer version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: touchstone-version
+    attributes:
+      label: Touchstone version
+      options:
+        - "1.x"
+        - "2.0"
+        - "2.1"
+        - "Unknown"
+    validations:
+      required: true
+
+  - type: input
+    id: data-format
+    attributes:
+      label: Unit, data format, and matrix format
+      description: For example, GHz / RI / full matrix / 50 ohm.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include the smallest synthetic Touchstone text when possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and diagnostics
+      description: Include S2P Viewer output-channel diagnostics, screenshots, or error codes with private paths removed.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: data-safety
+    attributes:
+      label: Data safety confirmation
+      options:
+        - label: Any attached file is synthetic or I have permission to share it publicly.
+          required: true
+        - label: I removed credentials, customer data, wafer identifiers, private paths, and PDK content.
+          required: true

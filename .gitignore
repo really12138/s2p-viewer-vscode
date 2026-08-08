@@ -1,0 +1,11 @@
+.superpowers/
+.worktrees/
+node_modules/
+dist/
+out/
+coverage/
+.vscode-test/
+*.vsix
+*.log
+dist-test/
+dist-tools/

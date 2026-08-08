@@ -1,0 +1,86 @@
+{
+  "name": "s2p-viewer",
+  "displayName": "S2P Viewer",
+  "description": "Preview and compare two-port Touchstone S-parameter files.",
+  "publisher": "really12138",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/really12138/s2p-viewer-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/really12138/s2p-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/really12138/s2p-viewer-vscode#readme",
+  "keywords": ["touchstone", "s-parameters", "rf", "smith-chart", "microwave"],
+  "engines": {
+    "vscode": "^1.123.0"
+  },
+  "categories": ["Visualization"],
+  "extensionKind": ["workspace"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "s2pViewer.preview",
+        "displayName": "S2P Preview",
+        "selector": [
+          { "filenamePattern": "*.s2p" },
+          { "filenamePattern": "*.S2P" }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "s2pViewer.reopenAsText",
+        "title": "S2P Viewer: Reopen as Text"
+      },
+      {
+        "command": "s2pViewer.compareFiles",
+        "title": "Compare S2P Files"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "s2pViewer.compareFiles",
+          "when": "resourceExtname == .s2p || resourceExtname == .S2P",
+          "group": "navigation@20"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "notices:generate": "node scripts/generateThirdPartyNotices.mjs",
+    "notices:check": "node scripts/generateThirdPartyNotices.mjs --check",
+    "test:integration": "node dist-test/runTest.js",
+    "benchmark": "node dist-tools/benchmark.js",
+    "package": "npm run clean && npm run check && npm run test && npm run build && npm run test:integration && vsce package --out dist/s2p-viewer-0.1.0.vsix && node dist-tools/normalizeVsix.js dist/s2p-viewer-0.1.0.vsix"
+  },
+  "dependencies": {
+    "plotly.js": "3.7.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "10.0.10",
+    "@types/node": "24.13.3",
+    "@types/plotly.js": "3.0.10",
+    "@types/vscode": "1.120.0",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "3.9.2",
+    "esbuild": "0.28.1",
+    "fflate": "0.8.2",
+    "jsdom": "29.1.1",
+    "mocha": "11.7.6",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
+  }
+}
